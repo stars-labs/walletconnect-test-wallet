@@ -265,6 +265,9 @@ class App extends React.Component<{}> {
 
     if (connector) {
       connector.on("session_request", (error, payload) => {
+
+        console.log(payload);
+
         console.log("EVENT", "session_request");
 
         if (error) {
@@ -275,8 +278,8 @@ class App extends React.Component<{}> {
         this.setState({ peerMeta });
       });
 
-      connector.on("session_update", error => {
-        console.log("EVENT", "session_update");
+      connector.on("session_update", async (error, payload) => {
+        console.log("EVENT", "session_update",payload);
 
         if (error) {
           throw error;
@@ -296,7 +299,7 @@ class App extends React.Component<{}> {
       });
 
       connector.on("connect", (error, payload) => {
-        console.log("EVENT", "connect");
+        console.log("EVENT", "connect",payload);
 
         if (error) {
           throw error;
